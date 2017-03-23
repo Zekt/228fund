@@ -1,4 +1,4 @@
-import bottle, os
+import bottle, os, sys
 from bottle.ext import sqlite
 
 
@@ -23,8 +23,15 @@ def login(db):
     if not number or not phone:
         return 'Please enter valid string'
     row = db.execute('SELECT * FROM funders WHERE 手機=?', [phone+"'"]).fetchone()
-    if not row or row['金流單號'] != str(number):
+    if not row or row['金流單號'] != number+"'":
        return 'Invalid phone number or order number and phone number doesn\'t match.'
     return row
 
-app.run(host='localhost', port=8080, debug=True)
+host = 'localhost'
+port = 9999
+if len(sys.argv) >= 1:
+    host = sys.argv[1]
+if len(sys.argv) >= 2:
+    port = int(sys.argv[2])
+
+app.run(host=host, port=port, debug=True)
