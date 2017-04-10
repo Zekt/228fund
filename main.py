@@ -27,6 +27,11 @@ def send_static(filename):
     print(filename)
     return bottle.static_file(filename, root='./static/')
 
+@app.route('/founder/<filename:path>')
+def send_static(filename):
+    print(filename)
+    return bottle.static_file(filename, root='./static/founder/')
+
 @app.post('/')
 def login(db):
     number = bottle.request.forms.get('number', type=str)
@@ -103,6 +108,22 @@ def store(db):
             forms.color2,
             payload['flow_number']])
     return render('thanks.html')
+
+@app.error(404)
+def error404(error):
+    return render('404.html')
+
+@app.error(403)
+def error403(error):
+    return render('403.html')
+
+@app.error(500)
+def error500(error):
+    return render('500.html')
+
+@app.error(503)
+def error503(error):
+    return render('503.html')
 
 
 '''
