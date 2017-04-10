@@ -4,6 +4,10 @@
 * Python >= 3.5
 * bottle.py >= 0.12
 * bottle-sqlite >= 0.13
+* Jinja2
+* PyJWT
+* PyScss
+* PyJade
 
 ## 安裝
 建議使用 pip  
@@ -11,7 +15,7 @@
 * 安裝 pip：  
 `apt-get install pip3`
 * 安裝 bottle 與 bottle-sqlite：  
-`pip3 install bottle bottle-sqlite`
+`pip3 install bottle bottle-sqlite jinja2 PyJWT PyScss pyjade`
 
 ## 執行
 `python3 main.py <host> <port>`  
