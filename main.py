@@ -1,5 +1,15 @@
-import bottle, os, sys
+import bottle, os, sys, jinja2, jwt
 from bottle.ext import sqlite
+from datetime import datetime, timedelta
+from calendar import timegm
+import pyjade.ext
+
+def render(tlp, obj=None):
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader('views'),extensions=['pyjade.ext.jinja.PyJadeExtension'])
+    tlp = env.get_template(tlp)
+    if obj is None:
+        return tlp.render()
+    return tlp.render(obj)
 
 
 app = bottle.Bottle()
@@ -10,22 +20,90 @@ app.install(plugin)
 
 @app.route('/')
 def index():
-    return bottle.template('index.html')
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader('views'))
+    tlp = env.get_template('home.html')
+    return render(tlp)
 
 @app.route('/static/<filename:path>')
 def send_static(filename):
-    return bottle.static_file(filename, './static/')
+    print(filename)
+    return bottle.static_file(filename, root='./static/')
 
 @app.post('/')
 def login(db):
     number = bottle.request.forms.get('number', type=str)
     phone = bottle.request.forms.get('phone', type=str)
     if not number or not phone:
-        return 'Please enter valid string'
-    row = db.execute('SELECT * FROM funders WHERE 手機=?', [phone+"'"]).fetchone()
-    if not row or row['金流單號'] != number+"'":
-       return 'Invalid phone number or order number and phone number doesn\'t match.'
-    return row
+        return render('home.html', {'error':True})
+    rows = db.execute('SELECT * FROM funders WHERE phone=?', [phone]).fetchall()
+    row = next((row for row in rows if number == row['flow_number']), None)
+    if not row:
+        return render('home.html', {'error':True})
+
+    now = datetime.utcnow()
+    token = jwt.encode({
+            'isa': timegm(now.utctimetuple()),
+            'exp': timegm((now+timedelta(hours=2)).utctimetuple()),
+            'TID': row['TID'],
+            'flow_number': row['flow_number'],
+            },
+        'secret', algorithm='HS256')
+    print(token)
+    context = {
+        'perk': row['perk'],
+        'chosen': row['chosen'],
+        'recipient': row['recipient'],
+        'phone': row['phone'],
+        'zip': row['zip'],
+        'address': row['address'],
+        'token': token.decode(),
+    }
+    return render('details'+str(row['type'])+'.html', context)
+
+@app.route('/thanks')
+def thank():
+    return render('thanks.html')
+
+@app.post('/thanks')
+def store(db):
+    token = bottle.request.forms.get('token', type=str)
+    try:
+        payload = jwt.decode(token.encode(), 'secret', algorithm='HS256')
+    except Exception as e:
+        payload = jwt.decode(token.encode(), 'secret', algorithm='HS256',options={'verify_exp': False})
+        print("payload timestamp isa: ",payload['isa'])
+        print("payload timestamp exp: ",payload['exp'])
+        print("current timestamp: ",timegm(datetime.utcnow().utctimetuple()))
+        print(e)
+        return render('home.html', {'error':True})
+
+    row = db.execute(
+        '''SELECT * FROM funders WHERE\
+        TID = ? AND flow_number = ?''',
+        [payload['TID'], payload['flow_number']]).fetchone()
+    if not row:
+        return render('home.html', {'error':True})
+
+    forms = bottle.request.forms
+    print(forms.recipient)
+    db.execute('''UPDATE funders SET\
+            recipient = ?,\
+            phone = ?,\
+            zip = ?,\
+            address = ?,\
+            size1 = ?,\
+            size2 = ?,\
+            color = ? WHERE flow_number = ?''',
+            [get('recipient'),
+            forms.phone,
+            forms.zip,
+            forms.address,
+            forms.size1,
+            forms.size2,
+            forms.colode,
+            payload['flow_number']])
+    return render('thanks.html')
+
 
 host = 'localhost'
 port = 9999

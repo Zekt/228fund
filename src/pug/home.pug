@@ -1,0 +1,40 @@
+extends base.html
+
+block styles
+  link(rel='stylesheet' href='/static/css/home.css')
+
+block scripts
+  script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+  script(src='//s3-ap-northeast-1.amazonaws.com/justfont-user-script/jf-49571.js')
+
+block content
+  .index
+    .page
+      header#header_index
+        img#bg_img(src="http://54.64.122.237/founder/material/index_bg.png", alt="")
+        img#logo(src="http://54.64.122.237/founder/material/logo.svg", alt="")
+        h2 募資品資料確認網站
+      section#section_about
+        h3 感謝您的贊助，使得第五屆共生音樂節更臻順利。
+        h4 創設此網站係由於募資網站有部分細節不夠完善，希望能透過
+          br
+          |這個網站彌補缺失，同時亦再次向您確認收件資料。
+          br
+          |網站以您當時在募資平台上的電話和金流單號登入。
+          br
+          |點擊下方文字後，登入flyingV帳號，即可得知贊助金流單號。
+        a(href="https://www.flyingv.cc/backings")
+          h4#serch 點此以查詢金流單號
+  
+      form#section_login(action="/" method="post")
+        input#icon(type="image",src="http://54.64.122.237/founder/material/index_icon.png", alt="Submit")
+        if error
+          .error 單號或電話有誤，請再次輸入
+        .text  
+          h5#enter 輸入資訊以登入
+          .number
+            h5#number 單號：
+            input#n(name="number" type="text")
+          .phone
+            h5#phone 電話：
+            input#p(name="phone" type="text")

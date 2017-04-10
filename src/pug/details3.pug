@@ -1,0 +1,56 @@
+extends base.html
+
+block styles
+  link(rel='stylesheet' href='/static/css/details3.css')
+
+block content
+  .index
+    .page
+      img#logo(src="http://54.64.122.237/founder/material/logo.svg", alt="")
+      img#img_clothes(src="http://54.64.122.237/founder/material/clothes.png", alt="")
+      img#red_2(src="http://54.64.122.237/founder/material/red_2.png", alt="")
+      h2#written 已填資料
+      h2#confirm 確認資料
+      h3#item 回饋項目
+      h3#send_w 寄送資料
+      h3#send_c 寄送資料
+      h3#clothes 衣服資料
+      h4#h4_item=perk
+        br
+        |選擇：#{chosen}
+        br
+        |衣服尺寸：#{size1}
+      h4#h4_send_w 收件人：#{recipient}
+        br
+        |手機：#{phone}
+        br
+        |郵遞區號：#{zip}
+        br
+        |地址：#{address}
+      form(action="/" method="post")
+        h4#h4_send_c 收件人：
+          input#name(value=recipient)
+          br
+          |手機：
+          input#phone(value=phone)
+          br
+          |郵遞區號：
+          input#dirt(value=zip)
+          br
+          |地址：
+          input#addr(value=address)
+        h4#h4_clothes 衣服尺寸：
+          select#size
+            option(value="XS") XS
+            option(value="S") S
+            option(value="M") M
+            option(value="L") L
+            option(value="XL") XL
+            option(value="2L") 2L
+            option(value="4L") 4L
+          br
+          |衣服顏色：
+          select#color
+            option(value="gray") 灰色
+            option(value="black") 黑色
+        input#send(type="button",value="送出",alt="Submit")
