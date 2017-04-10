@@ -93,14 +93,16 @@ def store(db):
             address = ?,\
             size1 = ?,\
             size2 = ?,\
-            color = ? WHERE flow_number = ?''',
-            [get('recipient'),
+            color1 = ?,\
+            color2 = ? WHERE flow_number = ?''',
+            [forms.recipient,
             forms.phone,
             forms.zip,
             forms.address,
             forms.size1,
             forms.size2,
-            forms.colode,
+            forms.color1,
+            forms.color2,
             payload['flow_number']])
     return render('thanks.html')
 

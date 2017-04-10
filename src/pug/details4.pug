@@ -30,18 +30,18 @@ block content
         |地址：#{address}
       form(action="/" method="post")
         h4#h4_send_c 收件人：
-          input#name(value=recipient)
+          input#name(name='recipient', value=recipient)
           br
           |手機：
-          input#phone(value=phone)
+          input#phone(name='phone', value=phone)
           br
           |郵遞區號：
-          input#dirt(value=zip)
+          input#dirt(name='zip', value=zip)
           br
           |地址：
-          input#addr(value=address)
+          input#addr(name='address', value=address)
         h4#h4_clothes_1 衣服尺寸：
-          select
+          select(name='size1')
             option(value="XS") XS
             option(value="S") S
             option(value="M") M
@@ -51,11 +51,11 @@ block content
             option(value="4L") 4L
           br
           |衣服顏色：
-          select
+          select(name='color1')
             option(value="gray") 灰色
             option(value="black") 黑色
         h4#h4_clothes_2 衣服尺寸：
-          select
+          select(name='size2')
             option(value="XS") XS
             option(value="S") S
             option(value="M") M
@@ -65,7 +65,7 @@ block content
             option(value="4L") 4L
           br
           |衣服顏色：
-          select
+          select(name='color2')
             option(value="gray") 灰色
             option(value="black") 黑色
-        input#send(type="button",value="送出",alt="Submit")
+        input#send(type="submit",value="送出",alt="Submit")

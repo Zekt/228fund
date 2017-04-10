@@ -40,7 +40,7 @@ block content
           |地址：
           input#addr(value=address)
         h4#h4_clothes 衣服尺寸：
-          select#size
+          select#size(name='size1')
             option(value="XS") XS
             option(value="S") S
             option(value="M") M
@@ -50,7 +50,7 @@ block content
             option(value="4L") 4L
           br
           |衣服顏色：
-          select#color
+          select#color(name='color1')
             option(value="gray") 灰色
             option(value="black") 黑色
-        input#send(type="button",value="送出",alt="Submit")
+        input#send(type="submit",value="送出",alt="Submit")
