@@ -20,9 +20,7 @@ app.install(plugin)
 
 @app.route('/')
 def index():
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader('views'))
-    tlp = env.get_template('home.html')
-    return render(tlp)
+    return render('home.html')
 
 @app.route('/static/<filename:path>')
 def send_static(filename):
@@ -107,6 +105,7 @@ def store(db):
     return render('thanks.html')
 
 
+'''
 host = 'localhost'
 port = 9999
 if len(sys.argv) > 1:
@@ -115,3 +114,4 @@ if len(sys.argv) > 2:
     port = int(sys.argv[2])
 
 app.run(host=host, port=port, debug=True)
+'''
