@@ -51,7 +51,6 @@ def login(db):
             'flow_number': row['flow_number'],
             },
         'secret', algorithm='HS256')
-    print(token)
     context = {
         'perk': row['perk'],
         'chosen': row['chosen'],
