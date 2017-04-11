@@ -69,6 +69,8 @@ def thank():
 @app.post('/thanks')
 def store(db):
     token = bottle.request.forms.get('token', type=str)
+    if not token:
+        return render('home.html', {'error':True})
     try:
         payload = jwt.decode(token.encode(), 'secret', algorithm='HS256')
     except Exception as e:
