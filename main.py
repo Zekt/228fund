@@ -70,6 +70,7 @@ def thank():
 def store(db):
     token = bottle.request.forms.get('token', type=str)
     if not token:
+        return 'token error!'
         return render('home.html', {'error':True})
     try:
         payload = jwt.decode(token.encode(), 'secret', algorithm='HS256')
@@ -86,6 +87,7 @@ def store(db):
         TID = ? AND flow_number = ?''',
         [payload['TID'], payload['flow_number']]).fetchone()
     if not row:
+        return 'select error!'
         return render('home.html', {'error':True})
 
     forms = bottle.request.forms

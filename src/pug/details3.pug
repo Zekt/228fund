@@ -29,16 +29,16 @@ block content
         |地址：#{address}
       form(action="/thanks" method="post")
         h4#h4_send_c 收件人：
-          input#name(value=recipient)
+          input#name(name='recipient', value=recipient)
           br
           |手機：
-          input#phone(value=phone)
+          input#phone(name='phone', value=phone)
           br
           |郵遞區號：
-          input#dirt(value=zip)
+          input#dirt(name='zip', value=zip)
           br
           |地址：
-          input#addr(value=address)
+          input#addr(name='address', value=address)
         h4#h4_clothes 衣服尺寸：
           select#size(name='size1')
             option(value="XS") XS
