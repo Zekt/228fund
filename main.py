@@ -142,13 +142,12 @@ def error503(error):
     return render('503.html')
 
 
-'''
-host = 'localhost'
-port = 9999
-if len(sys.argv) > 1:
-    host = sys.argv[1]
-if len(sys.argv) > 2:
-    port = int(sys.argv[2])
-
-app.run(host=host, port=port, debug=True)
-'''
+if __name__ == "__main__":
+    host = 'localhost'
+    port = 9999
+    if len(sys.argv) > 1:
+        host = sys.argv[1]
+    if len(sys.argv) > 2:
+        port = int(sys.argv[2])
+    
+    app.run(host=host, port=port, debug=True)
