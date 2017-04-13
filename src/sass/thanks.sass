@@ -1,4 +1,4 @@
-@media screen and (min-width: 800px)
+@media screen and (min-width: 1024px)
   header
     width: 100%
     height: 100%
@@ -15,7 +15,6 @@
     transform: translateX(-50%) translateY(-50%)
     &:hover
       & .card
-        // overflow: hidden
       & #thanks_taiwan
         opacity: 1
       & #thanks_sol
@@ -122,3 +121,58 @@
     transition-delay: 5.5s
     transition-duration: 2s
     white-space: nowrap
+
+@media screen and (max-width: 1024px)
+  header
+    position: relative
+    height: 100%
+    overflow: hidden
+  #bg_img
+    position: absolute
+    opacity: 0.1
+    width: 75%
+    min-width: 360px
+    top: 20%
+  #logo
+    position: absolute
+    width: 50%
+    max-width: 255px
+    top: 15%
+    left: 50%
+    transform: translateX(-50%)
+  #thanks_letter
+    opacity: 0
+  #thanks_rot
+    opacity: 0
+  #thanks_news
+    opacity: 0
+  #thanks_wel
+    opacity: 0
+  #thanks_taiwan
+    opacity: 0
+  #thanks_sol
+    opacity: 0
+  #thanks_feb28
+    opacity: 0
+  #thanks_des
+    opacity: 0
+  h2
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    top: 35%
+    font-family: jf-jinxuan
+    font-size: 7.3vw
+    opacity: 1
+    color: #333
+  h3
+    color: #333
+    position: absolute
+    left: 50%
+    top: 50%
+    font-size: 2.88vw
+    transform: translateX(-50%)
+    font-family: datm7,'PT Serif'
+    font-weight: 700
+    white-space: nowrap
+    opacity: 1

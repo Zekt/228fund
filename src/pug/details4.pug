@@ -3,12 +3,23 @@ extends base.html
 block styles
   link(rel='stylesheet' href='/static/css/details4.css')
 
+block scripts
+  script.
+    if (navigator.userAgent.match("Firefox")&&window.screen.width>1024) { 
+      $("#h4_clothes_1").css("line-height","60px");
+      $("#h4_clothes_2").css("line-height","60px");
+      $("#h4_clothes_2").css("top","1184.584px");
+      $("#send").css("top","1370.633px");  
+      $("#clothes_2").css("top","1150px");
+      $(".page").css("height","1450px");
+    }
+
 block content
   .index
     .page
-      img#logo(src="http://54.64.122.237/founder/material/logo.svg", alt="")
-      img#img_clothes(src="http://54.64.122.237/founder/material/clothes.png", alt="")
-      img#red_2(src="http://54.64.122.237/founder/material/red_2.png", alt="")
+      img#logo(src="//www.gongsheng228.tw/founder/material/logo.svg", alt="")
+      img#img_clothes(src="//www.gongsheng228.tw/founder/material/clothes.png", alt="")
+      img#red_2(src="//www.gongsheng228.tw/founder/material/red_2.png", alt="")
       h2#written 已填資料
       h2#confirm 確認資料
       h3#item 回饋項目
@@ -42,31 +53,31 @@ block content
           input#addr(name='address', value=address)
         h4#h4_clothes_1 衣服尺寸：
           select(name='size1')
-            option(value="XS") XS
-            option(value="S") S
-            option(value="M") M
-            option(value="L") L
-            option(value="XL") XL
-            option(value="2L") 2L
-            option(value="4L") 4L
+            option(value="XS", selected=S1XS) XS
+            option(value="S", selected=S1S) S
+            option(value="M", selected=S1M) M
+            option(value="L", selected=S1L) L
+            option(value="XL", selected=S1XL) XL
+            option(value="2L", selected=S12L) 2L
+            option(value="4L", selected=S14L) 4L
           br
           |衣服顏色：
           select(name='color1')
-            option(value="gray") 灰色
-            option(value="black") 黑色
+            option(value="gray" selected=C1gray) 灰色
+            option(value="black" selected=C1black) 黑色
         h4#h4_clothes_2 衣服尺寸：
           select(name='size2')
-            option(value="XS") XS
-            option(value="S") S
-            option(value="M") M
-            option(value="L") L
-            option(value="XL") XL
-            option(value="2L") 2L
-            option(value="4L") 4L
+            option(value="XS", selected=S2XS) XS
+            option(value="S", selected=S2S) S
+            option(value="M", selected=S2M) M
+            option(value="L", selected=S2L) L
+            option(value="XL", selected=S2XL) XL
+            option(value="2L", selected=S22L) 2L
+            option(value="4L", selected=S24L) 4L
           br
           |衣服顏色：
           select(name='color2')
-            option(value="gray") 灰色
-            option(value="black") 黑色
+            option(value="gray" selected=C2gray) 灰色
+            option(value="black" selected=C2black) 黑色
         input(name='token', type='hidden', value=token)
         input#send(type="submit",value="送出",alt="Submit")

@@ -58,8 +58,21 @@ def login(db):
         'phone': row['phone'],
         'zip': row['zip'],
         'address': row['address'],
+        'size1': row['size1'],
+        'size2': row['size1'],
+        'color1': row['color1'],
+        'color2': row['color2'],
         'token': token.decode(),
     }
+    if row['size1'] is not None:
+        context['S1'+row['size1']] = True
+    if row['size2'] is not None:
+        context['S2'+row['size2']] = True
+    if row['color1'] is not None:
+        context['C1'+row['color1']] = True
+    if row['color2'] is not None:
+        context['C2'+row['color2']] = True
+    print(context)
     return render('details'+str(row['type'])+'.html', context)
 
 @app.route('/thanks')
