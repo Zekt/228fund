@@ -97,3 +97,4 @@ static/css
 static/founder
 backup.sh
 backups
+config.py

@@ -1,0 +1,36 @@
+extends base.html
+
+block styles
+  link(rel='stylesheet' href='/static/css/all.css')
+
+block content
+  .index
+    .page
+      img#logo(src="http://54.64.122.237/founder/material/logo.svg", alt="")
+      //img#red_1(src="http://54.64.122.237/founder/material/red_1.png", alt="")
+      form(action="/" method="post")
+        input#all(
+          type="button"
+          value="顯示所有資料"
+          alt="Submit"
+          )
+      form(action="/" method="post")
+        input#didnt_send(
+          type="button"
+          value="顯示未寄資料"
+          alt="Submit"
+          )
+      table
+        tr
+          th.name 收件人
+          th.phone 手機
+          th.dir 郵遞區號
+          th.addr 地址
+          th.item 品項
+        each item in rows
+          tr
+            td #{item[0]}
+            td #{item[1]}
+            td #{item[2]}
+            td #{item[3]}
+            td #{item[4]}

@@ -1,0 +1,18 @@
+extends base.html
+
+block styles
+  link(rel='stylesheet' href='/static/css/admin.css')
+
+block content
+  .index
+    .page
+      img#logo(src="http://54.64.122.237/founder/material/logo.svg", alt="")
+      img#red_1(src="http://54.64.122.237/founder/material/red_1.png", alt="")
+      form(action="/" method="post")
+        h3 輸入單號
+          input#single(name="number", type="text")
+        input(name='token', type='hidden', value=token)
+        input#single_submit(type="submit",value="單筆資料修改",alt="Submit")
+      form(action="/all" method="post")
+        input(name='token', type='hidden', value=token)
+        input#all(type="submit",value="顯示所有資料",alt="Submit")
