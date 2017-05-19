@@ -9,8 +9,8 @@ block content
   .index
     .page
       header#header_index
-        img#bg_img(src="//www.gongsheng228.tw/founder/material/index_bg.png", alt="")
-        img#logo(src="//www.gongsheng228.tw/founder/material/logo.svg", alt="")
+        img#bg_img(src="http://54.64.122.237/founder/material/index_bg.png", alt="")
+        img#logo(src="http://54.64.122.237/founder/material/logo.svg", alt="")
         h2 募資品資料確認網站
       section#section_about
         h3 感謝您的贊助，使得第五屆共生音樂節更臻順利。
@@ -23,16 +23,38 @@ block content
           |點擊下方文字後，登入flyingV帳號，即可得知贊助金流單號。
         a(href="https://www.flyingv.cc/backings")
           h4#serch 點此以查詢金流單號
-  
+
       form#section_login(action="/" method="post")
-        input#icon(type="image",src="//www.gongsheng228.tw/founder/material/index_icon.png", alt="Submit")
+        input#icon(type="image",src="http://54.64.122.237/founder/material/index_icon.png", alt="Submit")
         if error
           .error 單號或電話有誤，請再次輸入
         .text  
           h5#enter 輸入資訊以登入
           .number
             h5#number 單號：
-            input#n(name="number" type="text")
+            input#n(name="number", type="text")
           .phone
             h5#phone 電話：
-            input#p(name="phone" type="text")
+            input#p(name="phone", type="text")
+        .info 
+          h6 聯絡資訊
+          h6 共生音樂節
+          a.info_a(href="https://www.facebook.com/GongSheng228")
+            img.info_img(src="http://www.gongsheng228.tw/founder/material/facebook.svg", alt="",width="10px")
+          a.info_a(href="mailto:gongsheng228@gmail.com")
+            img.info_img(src="http://www.gongsheng228.tw/founder/material/mail.svg", alt="",width="10px")
+          h6 第五屆總召
+          a.info_a(href="tel:+886970950776",title="蔡喻安")
+            img.info_img(src="http://www.gongsheng228.tw/founder/material/phone-call.svg", alt="",width="10px")
+          a.info_a(href="mailto:am85629@gmail.com",title="蔡喻安")
+            img.info_img(src="http://www.gongsheng228.tw/founder/material/mail.svg", alt="",width="10px")
+          h6 第六屆總召
+          a.info_a(href="tel:+886970322936",title="徐祥弼")
+            img.info_img(src="http://www.gongsheng228.tw/founder/material/phone-call.svg", alt="",width="10px")
+          a.info_a(href="mailto:104209047@nccu.edu.tw",title="徐祥弼")
+            img.info_img(src="http://www.gongsheng228.tw/founder/material/mail.svg", alt="",width="10px")
+          .copyright
+            a.info_a(rel="license", href="http://creativecommons.org/licenses/by-nc-nd/4.0/")
+              img#licence_img(alt="創用 CC 授權條款",style="border-width:0",src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png")
+              h6#licence_h6 本著作係採用創用 CC 姓名標示-非商業性-禁止改作 4.0 國際 授權條款
+            
