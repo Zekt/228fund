@@ -175,7 +175,7 @@ def show_all(db):
     if not payload['admin']:
         return bottle.HTTPError(status=403)
 
-    rows = db.execute('SELECT recipient, phone, zip, address, perk FROM funders').fetchall()
+    rows = db.execute('SELECT recipient, phone, zip, address, perk, chosen, size1, color1, size2, color2 FROM funders').fetchall()
     return render('all.html', {'rows': rows})
 
 
