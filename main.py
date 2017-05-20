@@ -44,7 +44,7 @@ def login(db):
     admin = False
     if token:
         payload = jwt.decode(token.encode(), config.secret, algorithm='HS256')
-        if payload['admin']:
+        if 'admin' in payload:
             admin = True
     number = bottle.request.forms.get('number', type=str)
     if not admin:
@@ -123,7 +123,7 @@ def store(db):
         print(e)
         return render('home.html', {'error': True})
 
-    if payload['admin']:
+    if 'admin' in payload:
         payload['flow_number'] = bottle.request.forms.get('number', type=str)
 
     row = db.execute(
